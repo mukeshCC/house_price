@@ -7,9 +7,14 @@ import math
 import base64
 
 result = None
+try :
+    with open("ban_house.pickle", 'rb') as f:
+        __model = pickle.load(f)
 
-with open("ban_house.pickle", 'rb') as f:
-    __model = pickle.load(f)
+except Exception as e:
+    st.error("Error loading the model. Please check if the model file 'ban_house.pickle' is available.")
+    st.stop()  # Stop the app if model loading fails
+
 
 with open("data_columns.json", 'r') as obj:
     __data_columns = json.load(obj)["data_columns"]
